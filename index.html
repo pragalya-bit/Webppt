@@ -1,0 +1,2012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worlderly - Smart Learning</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ICONS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* --- THEME VARIABLES --- */
+        :root {
+            /* Palette */
+            --space-blue: #0F2A4A;       
+            --action-orange: #FF6B35;    
+            --growth-green: #00C853;     
+            
+            /* Backgrounds */
+            --bg-light: #F4F7F9;         
+            --bg-white: #FFFFFF;
+            --text-main: #374151;        
+            --text-light: #6B7280;
+            
+            /* FAQ Specific */
+            --faq-bg: #fdfdfd;
+            --faq-hover: #f0f7ff;
+
+            /* Subject Colors */
+            --math-purple: #8B5CF6;
+            --sci-blue: #06B6D4;
+            --chess-gold: #F59E0B;
+            --ai-red: #EF4444;
+
+            /* Chess Colors */
+            --chess-pawn: #AFB42B; --chess-knight: #FDD835;
+            --chess-rook: #FB8C00; --chess-king: #FF3D00;
+
+            /* Journey Section Specifics */
+            --journey-bg: #E3F2FD; 
+            --shadow-light: rgba(15, 42, 74, 0.1);
+
+            /* Fonts: QUICKSAND FOR ALL */
+            --font-heading: 'Quicksand', sans-serif;
+            --font-body: 'Quicksand', sans-serif;
+            --font-ui: 'Quicksand', sans-serif;
+
+            /* UI */
+            --radius-card: 16px;
+            --radius-btn: 8px;
+            --shadow-card: 0 4px 20px rgba(15, 42, 74, 0.08);
+            --shadow-hover: 0 10px 30px rgba(15, 42, 74, 0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            font-weight: 500;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        
+        /* Typography Updates */
+        h1, h2, h3, h4, h5, h6 { 
+            font-family: var(--font-heading); 
+            color: var(--space-blue);
+            font-weight: 700;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+         
+        /* ================= PARTNERS & ALUMNI SECTION ================= */
+        .partners-section {
+            background: var(--bg-white);
+            padding: 80px 20px;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .partner-box {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            padding: 36px 28px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .partner-box:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .partner-box h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--space-blue);
+            margin-bottom: 18px;
+        }
+
+        .logo-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .logo-text {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-main);
+    letter-spacing: 0.3px;
+}
+        .partner-logo {
+    width: 150px;  /* adjust as needed */
+    height: auto;  /* keeps aspect ratio */
+}
+
+
+.separator {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* MEDIA QUERY MUST BE OUTSIDE */
+@media (max-width: 600px) {
+    .partners-section {
+        padding: 60px 16px;
+    }
+
+    .partner-box {
+        padding: 30px 22px;
+    }
+
+    .partner-box h4 {
+        font-size: 17px;
+    }
+
+    .logo-text {
+        font-size: 16px;
+    }
+}
+
+           
+        /* Force FontAwesome */
+        .fas, .fa-solid { font-family: "Font Awesome 6 Free" !important; font-weight: 900; }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block; padding: 12px 32px; border-radius: var(--radius-btn);
+            font-family: var(--font-ui); font-weight: 700; font-size: 1rem; cursor: pointer; border: none; transition: all 0.2s ease;
+        }
+        .btn-primary { background-color: var(--action-orange); color: white; box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); background-color: #e85a25; }
+        .btn-outline { background: transparent; border: 2px solid var(--space-blue); color: var(--space-blue); }
+        .btn-outline:hover { background: var(--space-blue); color: white; }
+
+        /* --- HEADER --- */
+        header { background: var(--bg-white); padding: 18px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-heading); font-size: 26px; font-weight: 700; color: var(--space-blue); display: flex; align-items: center; gap: 8px; letter-spacing: -0.5px; }
+        .logo span { color: var(--growth-green); font-size: 30px; line-height: 0; }
+        .nav-links { display: flex; align-items: center; gap: 30px; }
+        .nav-links a { font-family: var(--font-ui); font-weight: 600; color: var(--text-main); font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--action-orange); }
+
+        /* --- HERO --- */
+        .hero { padding: 80px 0; background: linear-gradient(to right, #ffffff 50%, var(--bg-light) 50%); position: relative; }
+        .hero-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: center; }
+        .hero-content h1 { font-size: 3.5rem; line-height: 1.15; margin-bottom: 24px; font-weight: 700; }
+        .hero-content h1 span { color: var(--action-orange); }
+        .hero-list { margin: 30px 0; padding: 0; }
+        .hero-list li { font-family: var(--font-ui); position: relative; padding-left: 35px; margin-bottom: 15px; font-size: 1.05rem; color: var(--text-main); font-weight: 600; }
+        .hero-list li::before {
+            content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            position: absolute; left: 0; top: 3px; color: var(--growth-green); background: rgba(0, 200, 83, 0.1);
+            width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;
+        }
+        .hero-img { position: relative; z-index: 1; }
+        .hero-img::before { content: ''; position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: var(--growth-green); border-radius: 50%; opacity: 0.2; z-index: -1; }
+        .hero-img::after { content: ''; position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; background: var(--space-blue); border-radius: 20px; opacity: 0.1; z-index: -1; transform: rotate(-10deg); }
+        .hero-img img { width: 100%; border-radius: 20px; box-shadow: var(--shadow-card); border: 4px solid white; object-fit: cover; }
+
+        /* --- FEATURES --- */
+        .features { padding: 90px 0; background: var(--bg-white); }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.6rem; margin-bottom: 15px; font-weight: 700; }
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .feature-card { background: white; padding: 40px 30px; border-radius: var(--radius-card); border: 1px solid #eee; transition: 0.3s; position: relative; overflow: hidden; height: 100%; }
+        .feature-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: transparent; }
+        .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--space-blue); }
+        .fc-orange::before { background: var(--action-orange); }
+        .fc-green::before { background: var(--growth-green); }
+        .icon-box { width: 60px; height: 60px; margin-bottom: 24px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .ib-blue { background: rgba(15, 42, 74, 0.1); color: var(--space-blue); }
+        .ib-orange { background: rgba(255, 107, 53, 0.1); color: var(--action-orange); }
+        .ib-green { background: rgba(0, 200, 83, 0.1); color: var(--growth-green); }
+        .feature-card h3 { font-size: 1.25rem; margin-bottom: 12px; font-weight: 700; color: var(--space-blue); }
+        .feature-card p { font-size: 0.95rem; color: var(--text-light); font-weight: 500; }
+
+        /* ================= CLASSES SECTION ================= */
+        .classes-section { max-width: 1200px; margin: auto; padding: 90px 20px; background: var(--bg-light); border-radius: 20px; margin-bottom: 60px; }
+        .tabs { display: flex; justify-content: center; gap: 12px; margin-bottom: 30px; flex-wrap: wrap; }
+        .tab { padding: 12px 24px; border-radius: 30px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-weight: 700; font-family: var(--font-ui); transition: 0.3s; color: var(--space-blue); }
+        .tab.active { background: var(--space-blue); color: #fff; border-color: var(--space-blue); }
+        
+        /* CARD BOX GRID (Navigation) */
+        .subject-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-bottom: 50px; }
+        .subject-card { background: #fff; padding: 30px; border-radius: 20px; border: 2px solid transparent; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: all 0.3s ease; cursor: pointer; display: flex; flex-direction: column; align-items: flex-start; text-align: left; position: relative; overflow: hidden; }
+        .subject-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .subject-card.active { border-color: var(--space-blue); background: #fff; box-shadow: 0 0 0 4px rgba(15, 42, 74, 0.1); }
+
+        .sub-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: white; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+        .ico-math { background: linear-gradient(135deg, #a78bfa, var(--math-purple)); }
+        .ico-sci { background: linear-gradient(135deg, #67e8f9, var(--sci-blue)); }
+        .ico-chess { background: linear-gradient(135deg, #fcd34d, var(--chess-gold)); }
+        .ico-ai { background: linear-gradient(135deg, #fca5a5, var(--ai-red)); }
+
+        .subject-card h3 { font-family: var(--font-heading); font-size: 1.4rem; color: var(--space-blue); margin-bottom: 10px; font-weight: 700; }
+        .subject-card p { font-size: 0.95rem; color: #64748b; line-height: 1.5; margin-bottom: 20px; flex-grow: 1; font-weight: 500; }
+        .card-cta { padding: 8px 20px; border-radius: 30px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; background: #f1f5f9; color: var(--space-blue); transition: 0.3s; border: none; cursor: pointer; font-family: var(--font-ui); }
+        .subject-card:hover .card-cta { background: var(--space-blue); color: white; }
+        .subject-card.active .card-cta { background: var(--action-orange); color: white; }
+
+        /* TAB CONTENT */
+        .tab-content { display: none; background: #fff; padding: 40px; border-radius: 16px; border: 1px solid #eee; animation: fadeIn 0.5s; box-shadow: var(--shadow-card); border-top: 5px solid var(--space-blue); }
+        .tab-content.active { display: block; }
+        .tab-content h3 { font-family: var(--font-heading); font-size: 2rem; color: var(--space-blue); margin-bottom: 10px; font-weight: 700; }
+
+        .tagline { font-weight: 700; color: var(--action-orange); margin-bottom: 24px; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--font-ui); }
+        
+        /* Level Tabs (Math/Sci) */
+        .level-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
+        .level-btn { background: transparent; border: 1px solid var(--space-blue); color: var(--space-blue); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-family: var(--font-main); font-weight: 700; font-size: 0.9rem; transition: 0.3s; }
+        .level-btn.active { background: var(--growth-green); color: white; border-color: var(--growth-green); }
+        .level-details { display: none; background: var(--bg-light); padding: 30px; border-radius: 12px; border-left: 5px solid var(--growth-green); }
+        .level-details.active { display: block; animation: fadeIn 0.3s; }
+        .level-details h5 { font-size: 1.4rem; margin-bottom: 20px; color: var(--space-blue); font-weight: 700; }
+        .level-details h6 { font-size: 1rem; color: var(--action-orange); font-weight: 700;  margin-top: 20px; margin-bottom: 10px; font-family: var(--font-ui); }
+        .level-details ul { padding-left: 20px; list-style-type: disc; }
+        .level-details li { margin-bottom: 5px; color: var(--text-main); font-weight: 500; }
+        .sci-takeaway { margin-top: 25px; font-weight: 700; color: var(--space-blue); font-size: 1.1rem; background: #fff; padding: 15px; border-radius: 8px; display: inline-block; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
+        /* Chess Timeline */
+        .chess-intro { text-align: center; max-width: 800px; margin: 0 auto 50px auto; }
+        .chess-timeline { display: flex; justify-content: space-between; align-items: flex-start; position: relative; margin: 80px 0; padding: 20px 0; }
+        .chess-timeline::before { content: ''; position: absolute; top: 50%; left: 50px; right: 50px; height: 4px; background: #e0e0e0; z-index: 0; transform: translateY(-50%); }
+        .timeline-step { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .step-icon { width: 100px; height: 100px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; border: 5px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin: 20px 0; transition: transform 0.3s; }
+        .timeline-step:hover .step-icon { transform: scale(1.1); }
+        .icon-pawn { background: var(--chess-pawn); } .icon-knight { background: var(--chess-knight); }
+        .icon-rook { background: var(--chess-rook); } .icon-king { background: var(--chess-king); }
+        .step-content { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 95%; border-top: 4px solid #ccc; text-align: left; }
+        .step-content h5 { font-size: 1.2rem; font-weight: 800; margin-bottom: 5px; }
+        .step-subtitle { font-size: 0.85rem; font-weight: 600; color: #777; margin-bottom: 10px; display: block; text-transform: none; }
+        .step-content ul { padding-left: 15px; margin-top: 10px; font-size: 0.85rem; color: #555; list-style-type: disc;}
+        .step-content h6 { font-size: 0.85rem; color: var(--action-orange); font-weight: 700; margin-top: 15px; margin-bottom: 5px; font-family: var(--font-ui); text-transform: uppercase; }
+        .timeline-step:nth-child(even) { flex-direction: column-reverse; }
+        .timeline-step:nth-child(even) .step-content { margin-bottom: 20px; }
+        .timeline-step:nth-child(odd) .step-content { margin-top: 20px; }
+        .step-pawn .step-content { border-top-color: var(--chess-pawn); } .step-knight .step-content { border-top-color: var(--chess-knight); }
+        .step-rook .step-content { border-top-color: var(--chess-rook); } .step-king .step-content { border-top-color: var(--chess-king); }
+        .chess-extras { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; background: var(--bg-light); padding: 30px; border-radius: 16px; }
+        .extra-box h4 { margin-bottom: 15px; font-size: 1.3rem; }
+        .extra-box ul li { margin-bottom: 10px; font-size: 0.95rem; display: flex; align-items: flex-start; }
+        .extra-box h6 { color: var(--action-orange); font-size: 0.95rem; font-weight: 700; margin-top: 15px; margin-bottom: 8px; text-transform: uppercase; }
+        .extra-box ul li i { color: var(--growth-green); margin-right: 10px; margin-top: 5px; }
+        .chess-btn { display: inline-block; padding: 8px 16px; border-radius: 8px; font-family: var(--font-ui); font-weight: 600; font-size: 0.8rem; cursor: pointer; text-decoration: none; margin-top: 10px; transition: 0.3s; }
+
+        .tab-cta { display: inline-block; margin-top: 30px; padding: 14px 35px; background: var(--action-orange); color: #fff; border-radius: 50px; text-decoration: none; font-weight: 700; transition: 0.3s; font-family: var(--font-ui); }
+        .tab-cta:hover { background: #e85a25; transform: translateY(-3px); }
+        .tab-cta.secondary { background: var(--growth-green); }
+        .coming-soon { font-style: italic; color: #888; margin-top: 15px; }
+        
+        /* Close Button Styles */
+        .close-btn-container { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; }
+        .btn-close { background: #f1f5f9; color: #64748b; padding: 10px 25px; border-radius: 30px; border: none; cursor: pointer; font-weight: 600; font-family: var(--font-main); transition: 0.3s; }
+        .btn-close:hover { background: #e2e8f0; color: #334155; }
+
+        /* ================= NEW JOURNEY SECTION (4-COLUMN GRID) ================= */
+        .journey-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--journey-bg) 0%, #F8FAFC 100%);
+            overflow: hidden;
+        }
+        .journey-container { max-width: 1400px; margin: 0 auto; text-align: center; }
+        .journey-header { margin-bottom: 60px; }
+        .journey-title {
+            font-size: 2.8rem; font-weight: 800; color: var(--space-blue);
+            margin-bottom: 16px; font-family: 'Montserrat', sans-serif;
+        }
+        .journey-subtitle { font-size: 1.1rem; color: var(--text-light); font-weight: 500; }
+
+        .steps-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+            max-width: 1200px; margin: 0 auto 60px; position: relative;
+        }
+
+        .step-card {
+            background: var(--bg-white); padding: 40px 24px; border-radius: 24px;
+            box-shadow: 0 10px 40px var(--shadow-light); position: relative;
+            transition: all 0.3s ease; border: 2px solid transparent; height: 320px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+        }
+        .step-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px var(--shadow-light); border-color: var(--action-orange); }
+
+        .step-icon {
+            width: 80px; height: 80px; border-radius: 20px; display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: white; margin-bottom: 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.15); position: relative;
+        }
+        .step-icon::before { content: ''; position: absolute; top: 4px; left: 4px; right: 4px; bottom: 4px; background: rgba(255,255,255,0.2); border-radius: 16px; z-index: -1; }
+
+        /* Step Colors (Using Worlderly Palette) */
+        .step1 .step-icon { background: linear-gradient(135deg, #2196F3, #1976D2); }
+        .step2 .step-icon { background: linear-gradient(135deg, #00C853, #00E676); }
+        .step3 .step-icon { background: linear-gradient(135deg, #FBC02D, #F57F17); }
+        .step4 .step-icon { background: linear-gradient(135deg, #FF6B35, #E64A19); }
+
+        .step-number { font-size: 1.8rem; font-weight: 800; color: var(--space-blue); margin-bottom: 12px; font-family: 'Montserrat', sans-serif; opacity: 0.3; }
+        .step-title { font-size: 1.2rem; font-weight: 700; color: var(--space-blue); margin-bottom: 12px; font-family: 'Inter', sans-serif; line-height: 1.4; }
+        .step-desc { font-size: 0.92rem; color: var(--text-light); line-height: 1.6; }
+
+        /* --- REMOVE INNER WHITE CARD --- */
+        .step-card .step-content {
+            background: transparent;   /* remove inner white background */
+            padding: 0;                /* remove inner padding */
+            border-radius: 0;          /* remove inner rounding */
+            box-shadow: none;          /* remove inner shadow */
+            width: 100%;               /* fill outer card */
+            text-align: center;        /* keep text centered */
+        }
+
+        /* Journey CTA Section */
+        .journey-cta {
+            background: var(--bg-white); padding: 48px 40px; border-radius: 24px;
+            max-width: 900px; margin: 0 auto; box-shadow: 0 20px 60px var(--shadow-light);
+            position: relative; overflow: hidden;
+        }
+        .journey-cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--space-blue), var(--action-orange), var(--growth-green)); }
+        
+        .j-cta-content { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; justify-content: center; }
+        .j-cta-text { flex: 1; min-width: 300px; }
+        .j-cta-title { font-size: 1.6rem; font-weight: 700; color: var(--space-blue); margin-bottom: 12px; }
+        .j-cta-subtitle { font-size: 1.15rem; color: var(--action-orange); font-weight: 600; margin-bottom: 20px; }
+        .j-cta-icon { width: 100px; height: 100px; background: linear-gradient(135deg, var(--space-blue), #1E3A8A); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.5rem; box-shadow: 0 15px 40px var(--shadow-light); flex-shrink: 0; }
+        
+        .j-cta-btn {
+            background: linear-gradient(135deg, var(--action-orange), #E65100); color: white; border: none;
+            padding: 16px 36px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; cursor: pointer;
+            transition: all 0.3s ease; font-family: 'Inter', sans-serif; box-shadow: 0 12px 35px rgba(255, 107, 53, 0.3);
+            text-decoration: none; display: inline-block;
+        }
+        .j-cta-btn:hover { transform: translateY(-3px); box-shadow: 0 18px 45px rgba(255, 107, 53, 0.5); }
+
+        /* --- PRICING SECTION --- */
+        .pricing-section { padding: 80px 20px; background: var(--bg-white); }
+        .pricing-header { text-align: center; max-width: 800px; margin: 0 auto 40px auto; }
+        .pricing-header h2 { font-size: 32px; margin-bottom: 10px; color: var(--space-blue); font-family: var(--font-heading); }
+        .pricing-header p { font-size: 18px; color: #666; font-family: var(--font-body); }
+        
+        .selector-container { display: flex; justify-content: center; gap: 30px; max-width: 900px; margin: 0 auto 40px auto; }
+        .selector-box { background: #fff; flex: 1; padding: 40px 20px; border-radius: 12px; border: 2px solid #e0e0e0; text-align: center; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.05); max-width: 350px; }
+        .selector-box:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: #aaa; }
+        .selector-box.active { border-color: #3498db; background-color: #f0f8ff; box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.2); }
+        .selector-icon { font-size: 40px; margin-bottom: 15px; display: inline-block; padding: 15px; border-radius: 50%; background: #eee; }
+        .selector-box h3 { margin: 0 0 10px 0; font-size: 22px; color: var(--space-blue); font-family: var(--font-heading); }
+        .selector-box p { margin: 0 0 20px 0; color: #666; font-size: 14px; font-family: var(--font-body); }
+        .selector-btn { background-color: var(--space-blue); color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block; transition: 0.3s; pointer-events: none; font-family: var(--font-ui); }
+        .selector-box.active .selector-btn { background-color: #3498db; }
+
+        .pricing-wrapper { display: none; justify-content: center; gap: 20px; max-width: 1200px; margin: 0 auto; align-items: flex-start; opacity: 0; transition: opacity 0.5s ease; }
+        .pricing-wrapper.show { display: flex; opacity: 1; animation: slideDown 0.5s ease forwards; }
+        .pricing-card { background: #fff; border-radius: 12px; flex: 1; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; overflow: hidden; border: 1px solid #e0e0e0; transition: transform 0.3s ease; display: flex; flex-direction: column; }
+        .pricing-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .card-header { padding: 20px; color: #fff; }
+        .plan-group .card-header { background-color: #f1c40f; color: #333; } .plan-buddy .card-header { background-color: #3498db; } .plan-private .card-header { background-color: #e74c3c; }
+        .plan-title { font-size: 24px; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-heading); }
+        .plan-subtitle { font-size: 14px; opacity: 0.9; margin-top: 5px; font-weight: 500; font-family: var(--font-ui); }
+        .price-section { padding: 30px 20px 10px 20px; }
+        .current-price { font-size: 36px; font-weight: 800; color: var(--space-blue); font-family: var(--font-heading); }
+        .original-price { text-decoration: line-through; color: #999; font-size: 16px; margin-left: 5px; font-family: var(--font-body); }
+        .billing-cycle { display: block; font-size: 14px; color: #777; margin-top: 5px; font-family: var(--font-body); }
+        .features-list { padding: 20px 30px; text-align: left; flex-grow: 1; }
+        .features-list ul { list-style: none; padding: 0; margin: 0; }
+        .features-list li { margin-bottom: 15px; font-size: 15px; position: relative; padding-left: 25px; line-height: 1.4; font-family: var(--font-body); font-weight: 500; }
+        .features-list li::before { content: "✔"; position: absolute; left: 0; color: #27ae60; font-weight: bold; }
+        .feature-note { display: block; font-size: 13px; color: #666; margin-top: 2px; font-style: italic; }
+        .card-footer { padding: 0 30px 30px 30px; }
+        .cta-button { display: block; width: 100%; padding: 15px 0; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 16px; transition: background 0.3s; color: #fff; background-color: #333; font-family: var(--font-ui); }
+        .cta-button:hover { opacity: 0.9; }
+        .badge { position: absolute; top: 0; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 4px 12px; font-size: 12px; border-radius: 0 0 6px 6px; text-transform: uppercase; font-weight: bold; font-family: var(--font-ui); }
+
+        /* --- GUARANTEE SECTION (CSS Badge) --- */
+        .guarantee-section { padding: 80px 20px; background-color: #F9F9F9; }
+        .guarantee-card { max-width: 1000px; margin: 0 auto; background: #FFFFFF; border-radius: 20px; padding: 60px 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); color: #333; }
+        .g-header { text-align: center; margin-bottom: 50px; }
+        .g-header h2 { font-size: 2.2rem; font-weight: 700; color: #0F2A4A; margin-bottom: 15px; margin-top: 0; }
+        .g-highlight { color: #FF6B35; text-decoration: underline; text-decoration-color: #FF6B35; text-underline-offset: 5px; }
+        .g-header p { font-size: 1rem; color: #666; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+        .g-content { display: flex; align-items: center; justify-content: center; gap: 60px; margin-bottom: 50px; }
+        .g-badge-container { flex-shrink: 0; position: relative; width: 160px; height: 160px; display: flex; align-items: center; justify-content: center; }
+        .g-badge { width: 140px; height: 140px; background: #FFC107; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2); position: relative; z-index: 2; border: 4px solid #FFD54F; }
+        .g-badge::after { content: ''; position: absolute; top: 5px; left: 5px; right: 5px; bottom: 5px; border: 2px dashed #B7950B; border-radius: 50%; }
+        .g-badge-text-100 { font-size: 1.8rem; font-weight: 800; color: #B03A2E; line-height: 1; }
+        .g-badge-text-mb { font-size: 0.7rem; font-weight: 700; color: #333; text-transform: uppercase; margin-top: 2px; }
+        .g-badge-text-g { font-size: 0.6rem; color: #333; text-transform: uppercase; letter-spacing: 1px; }
+        .g-ribbon-left, .g-ribbon-right { position: absolute; bottom: 0; width: 40px; height: 60px; background: #D32F2F; z-index: 1; }
+        .g-ribbon-left { left: 20px; transform: rotate(30deg); clip-path: polygon(0 0, 100% 0, 50% 100%); }
+        .g-ribbon-right { right: 20px; transform: rotate(-30deg); clip-path: polygon(0 0, 100% 0, 50% 100%); }
+        .g-text-col { text-align: left; max-width: 600px; }
+        .g-text-col h3 { font-size: 1.3rem; font-weight: 700; color: #0F2A4A; margin-top: 20px; margin-bottom: 12px; }
+        .g-text-col p { font-size: 0.95rem; color: #555; line-height: 1.6; margin: 0 0 20px 0; }
+        .g-text-col strong { font-weight: 700; color: #333; }
+        .g-text-col a { color: #0F62FE; font-weight: 600; text-decoration: none; }
+        .g-list { list-style: none; padding: 0; margin: 0; }
+        .g-list li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.95rem; color: #333; font-weight: 600; }
+        .g-list li::before { content: '•'; position: absolute; left: 0; color: #333; font-weight: bold; }
+        .g-footer { text-align: center; }
+        .g-btn { display: inline-block; background-color: #FF5722; color: white; padding: 15px 40px; font-size: 1.1rem; font-weight: 600; border-radius: 6px; border: none; cursor: pointer; transition: 0.3s; font-family: 'Quicksand', sans-serif; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .g-btn:hover { background-color: #E64A19; transform: translateY(-2px); }
+
+        /* --- CAREER SECTION (Teach at Worlderly) --- */
+        .career-section { padding: 80px 20px; background-color: #f4f6f8; }
+        
+        .career-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            /* Remove padding here so image touches edges if needed, but flex handling below handles spacing */
+            padding: 0;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: row; /* Side by Side */
+        }
+
+        /* Left Side Content */
+        .career-content {
+            padding: 50px 40px;
+            flex: 1;
+            text-align: left;
+        }
+
+        .career-header h2 { font-size: 32px; color: var(--space-blue); margin-bottom: 10px; margin-top: 0; font-family: var(--font-heading); font-weight: 700; }
+        .career-header p { font-size: 18px; color: #666; margin-bottom: 40px; font-family: var(--font-body); }
+        .highlight-text { color: var(--action-orange); }
+
+        .benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 40px; }
+        .benefit-card { background: #fdfdfd; border: 1px solid #eee; border-radius: 8px; padding: 20px; display: flex; align-items: flex-start; gap: 15px; transition: transform 0.2s ease; }
+        .benefit-card:hover { transform: translateY(-3px); border-color: #ffccbc; }
+        .benefit-icon { flex-shrink: 0; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background-color: #fff3e0; border-radius: 50%; color: var(--action-orange); }
+        .benefit-icon svg { width: 24px; height: 24px; fill: currentColor; }
+        .benefit-content h4 { margin: 0 0 5px 0; font-size: 18px; color: var(--space-blue); font-family: var(--font-heading); font-weight: 700; }
+        .benefit-content p { margin: 0; font-size: 14px; color: #555; font-family: var(--font-body); }
+
+        .target-profile { background-color: #e3f2fd; padding: 25px; border-radius: 8px; margin-bottom: 40px; }
+        .target-profile h3 { margin: 0 0 10px 0; color: #1565c0; font-size: 20px; font-family: var(--font-heading); font-weight: 700; }
+        .target-profile p { margin: 0; color: #0d47a1; font-size: 16px; font-family: var(--font-body); }
+
+        .career-cta-section { margin-top: 20px; } 
+        .apply-button { background-color: var(--action-orange); color: white; padding: 16px 40px; font-size: 18px; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3); font-family: var(--font-ui); }
+        .apply-button:hover { background-color: #e64a19; transform: translateY(-2px); }
+        .subtext { display: block; margin-top: 10px; font-size: 13px; color: #888; font-family: var(--font-body); }
+
+        /* Right Side Image */
+        .career-image-wrapper {
+            width: 45%; /* Adjust width of image column */
+            position: relative;
+            min-height: 100%;
+        }
+        
+        .career-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image fills the area without distortion */
+            display: block;
+        }
+
+        /* Mobile Responsiveness for Career Section */
+        @media (max-width: 900px) {
+            .career-container { flex-direction: column; }
+            .career-content { padding: 30px 20px; }
+            .career-image-wrapper { width: 100%; height: 300px; order: -1; /* Put image on top on mobile */ }
+            .benefits-grid { grid-template-columns: 1fr; } 
+        }
+        .single-line-heading {
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .single-line-heading {
+        white-space: normal; /* allow wrapping on mobile */
+        text-align: center;
+    }
+}
+
+        /* --- FAQ SECTION STYLES --- */
+        .faq-section {
+            padding: 80px 20px;
+            background: var(--faq-bg);
+            font-family: 'Segoe UI', sans-serif; /* Keeping specific font as per FAQ design */
+        }
+
+        .faq-container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .faq-section .section-header {
+            text-align: center;
+            margin-bottom: 45px;
+            color: var(--space-blue);
+        }
+
+        .faq-section .section-header h2 {
+            font-size: 2.6rem;
+            margin-bottom: 10px;
+        }
+
+        .faq-section .section-header p {
+            color: #555;
+        }
+
+        .faq-item {
+            background: #fff;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: #fff;
+            border: none;
+            padding: 20px 25px;
+            text-align: left;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--space-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #f8fbff;
+            color: var(--primary-orange);
+        }
+
+        .faq-question i {
+            font-size: 16px;
+            color: var(--primary-orange);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active i {
+            transform: rotate(45deg);
+        }
+
+        .faq-question.active {
+            background-color: var(--faq-hover);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background-color: #fff;
+            border-top: 1px solid transparent;
+        }
+
+        .faq-question.active + .faq-answer {
+            border-top-color: #eee;
+        }
+
+        .answer-content {
+            padding: 25px;
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .answer-content ul {
+            padding-left: 20px;
+            margin: 12px 0;
+        }
+
+        .answer-content li {
+            margin-bottom: 8px;
+            list-style: disc;
+        }
+
+        @media (max-width: 600px) {
+            .faq-question {
+                font-size: 16px;
+                padding: 15px 20px;
+            }
+            .answer-content {
+                padding: 20px;
+            }
+                 /* Full width */
+    .footer-desc {
+    font-family: var(--font-body);
+    color: #94A3B8;
+    font-size: 0.95rem;
+    white-space: nowrap;       /* Prevent line breaks */
+    max-width: 100%;           /* Full width */
+    overflow: hidden;          /* Optional: hides overflow if too long */
+    text-overflow: ellipsis;   /* Optional: adds ... if text too long */
+}
+}
+
+
+        /* --- CTA & FOOTER --- */
+        .cta-section { background: var(--space-blue); color: white; padding: 60px 24px; text-align: center; border-radius: 20px; margin: 60px auto; max-width: 1100px; position: relative; overflow: hidden; }
+        .cta-content h2 { font-size: 2.2rem; margin-bottom: 15px; font-weight: 800; color: white; }
+        .cta-content p { color: #CBD5E1; margin-bottom: 30px; font-family: var(--font-body); }
+        .btn-cta { background: var(--action-orange); color: white; padding: 14px 40px; border-radius: 50px; font-family: var(--font-ui); font-weight: 700; border: none; cursor: pointer; transition: 0.3s; }
+        
+        footer { background: var(--space-blue); color: white; padding: 60px 0; margin-top: 50px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; }
+        .footer-logo { font-size: 1.8rem; font-weight: 800; margin-bottom: 15px; color: white; display: inline-block;}
+        .footer-desc { font-family: var(--font-body); color: #94A3B8; font-size: 0.95rem; max-width: 300px; }
+        .footer-col h4 { font-family: var(--font-heading); color: var(--growth-green); margin-bottom: 20px; font-size: 1.1rem; font-weight: 700; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { font-family: var(--font-body); color: #CBD5E1; font-size: 0.9rem; }
+
+        @media (max-width: 1200px) { .steps-grid { grid-template-columns: repeat(2, 1fr); max-width: 800px; } }
+        @media (max-width: 900px) {
+            .hero-grid, .feature-grid, .footer-grid, .chess-extras, .steps-grid { grid-template-columns: 1fr; }
+            .hero { background: var(--bg-white); }
+            .hero-img { order: -1; margin-bottom: 40px; }
+            .step-card { height: auto; flex-direction: row; text-align: left; padding: 30px 20px; gap: 20px; }
+            .step-icon { margin-bottom: 0; width: 60px; height: 60px; font-size: 1.5rem; flex-shrink: 0; }
+            .step-number { display: none; }
+            .chess-timeline { flex-direction: column; margin: 20px 0; }
+            .chess-timeline::before { width: 4px; height: 100%; top: 0; left: 43px; right: auto; }
+            .timeline-step { flex-direction: row; text-align: left; margin-bottom: 30px; align-items: flex-start; width: 100%; }
+            .step-icon { margin-right: 20px; margin-bottom: 0; flex-shrink: 0; margin-left: 15px; width: 60px; height: 60px; font-size: 1.5rem; }
+            .step-content { width: 100%; }
+            .chess-extras { grid-template-columns: 1fr; }
+            .j-cta-content { flex-direction: column; text-align: center; }
+            .selector-container { flex-direction: column; align-items: center; gap: 20px; }
+            .pricing-wrapper { flex-direction: column; align-items: center; }
+            .pricing-card { width: 100%; max-width: 400px; }
+            .g-content { flex-direction: column; text-align: center; gap: 30px; }
+            .g-text-col { text-align: center; }
+            .guarantee-card { padding: 40px 20px; }
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-flex">
+            <div class="logo">Worlderly<span>.</span></div>
+            <div class="nav-links">
+                <a href="#" style="color:var(--space-blue); font-weight:700;">Student Login</a>
+                <a href="#" style="color:var(--space-blue); font-weight:700;">Teacher Login</a>
+                <button class="btn btn-primary">Book Trial</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1>Online Math, Science, Chess & STEM Classes for<br><span>Curious Kids in Singapore</span></h1>
+                
+                <ul class="hero-list">
+                  <li>1:1 and small-group classes with personal attention</li>
+                  <li>Caring, well-trained teachers who teach with clarity</li>
+                  <li>MOE-aligned curriculum, thoughtfully delivered</li>
+                </ul>
+                <button class="btn btn-primary" style="margin-right: 10px;">Book Trial Class</button>
+                <button class="btn btn-primary">Chat on WhatsApp</button>
+            </div>
+            <div class="hero-img">
+                <img src="./hero.jpg" alt="Student Learning">
+            </div>
+        </div>
+    </section>
+    <section class="partners-section">
+        <div class="container">
+    <div class="partners-grid">
+
+        <div class="partner-box">
+            <h4>Built by alumni of</h4>
+            <div class="logo-row">
+                <img src="InfiniteEngineers.png" alt="Infinite Engineers" class="partner-logo">
+                <span class="separator">|</span>
+                <img src="ieskoollogo.png" alt="IE Skool" class="partner-logo">
+            </div>
+        </div>
+
+
+                <div class="partner-box">
+            <h4>In partnership with</h4>
+            <div class="logo-row">
+                <img src="AKTlogo.png" alt="AKT Creations Logo" class="partner-logo">
+            </div>
+        </div>
+
+    </div>
+</div>
+        </div>
+    </section>
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Parents Trust Worlderly</h2>
+                <p>Thoughtfully designed for your child’s learning, confidence, and well-being</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon-box ib-blue"><i class="fas fa-book"></i></div>
+                    <h3>MOE-Aligned Curriculum</h3>
+                    <p>Lessons aligned with Singapore’s MOE syllabus, so learning stays consistent and stress-free.</p>
+                </div>
+                <div class="feature-card fc-orange">
+                    <div class="icon-box ib-orange"><i class="fas fa-users"></i></div>
+                    <h3>Personalised 1:1 & Small Groups</h3>
+                    <p>Small class sizes ensure your child is seen, heard, and supported at their own pace.</p>
+                </div>
+                <div class="feature-card fc-green">
+                    <div class="icon-box ib-green"><i class="fas fa-heart"></i></div>
+                    <h3>Caring, Skilled Women Educators</h3>
+                    <p>Patient and nurturing educators who build strong foundations and confidence.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box ib-blue"><i class="fas fa-clock"></i></div>
+                    <h3>Flexible Scheduling</h3>
+                    <p>Class timings that fit naturally into your family’s routine.</p>
+                </div>
+                <div class="feature-card fc-orange">
+                    <div class="icon-box ib-orange"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Safe Online Environment</h3>
+                    <p>A secure learning space with clear progress updates for parents.</p>
+                </div>
+                <div class="feature-card fc-green">
+                    <div class="icon-box ib-green"><i class="fas fa-chart-line"></i></div>
+                    <h3>Clear Learning Progress</h3>
+                    <p>Structured learning with regular feedback to support steady growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLASSES SECTION -->
+    <section class="classes-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Classes at Worlderly</h2>
+                <p>Thoughtfully designed programs aligned to Singapore standards — delivered with care.</p>
+            </div>
+
+            <!-- Subject Cards Grid (Navigation) -->
+            <div class="subject-grid">
+                <!-- MATH BOX -->
+                <div class="subject-card" onclick="openTab(event, 'math')">
+                    <div class="sub-icon ico-math"><i class="fas fa-calculator"></i></div>
+                    <h3>Mathematics</h3>
+                    <p>Build strong foundations from number sense to complex problem-solving. (Primary 1-6)</p>
+                    <button class="card-cta">Explore Math</button>
+                </div>
+                <!-- SCIENCE BOX -->
+                <div class="subject-card" onclick="openTab(event, 'science')">
+                    <div class="sub-icon ico-sci"><i class="fas fa-flask"></i></div>
+                    <h3>Science</h3>
+                    <p>Explore concepts through engaging experiments and discussions. (Primary 3-6)</p>
+                    <button class="card-cta">Explore Science</button>
+                </div>
+                <!-- CHESS BOX -->
+                <div class="subject-card" onclick="openTab(event, 'chess')">
+                    <div class="sub-icon ico-chess"><i class="fas fa-chess-knight"></i></div>
+                    <h3>Chess</h3>
+                    <p>Strategic thinking, patience, and competitive readiness from beginner to master.</p>
+                    <button class="card-cta">Explore Chess</button>
+                </div>
+                <!-- AI BOX -->
+                <div class="subject-card" onclick="openTab(event, 'ai')">
+                    <div class="sub-icon ico-ai"><i class="fas fa-robot"></i></div>
+                    <h3>AI & STEM</h3>
+                    <p>Future-ready skills in robotics, coding, and artificial intelligence.</p>
+                    <button class="card-cta">Explore AI</button>
+                </div>
+            </div>
+
+            <!-- ================= CONTENT AREAS (Detailed) ================= -->
+
+            <!-- MATH TAB -->
+            <div id="math" class="tab-content">
+                <h3>Math (P1 – P6)</h3>
+                <p class="tagline">MOE-Aligned · Inquiry-Based · PSLE-Focused</p>
+                
+                <div class="level-tabs">
+                    <button class="level-btn active" onclick="openMathLevel(event, 'math-p1')">Primary 1</button>
+                    <button class="level-btn" onclick="openMathLevel(event, 'math-p2')">Primary 2</button>
+                    <button class="level-btn" onclick="openMathLevel(event, 'math-p3')">Primary 3</button>
+                    <button class="level-btn" onclick="openMathLevel(event, 'math-p4')">Primary 4</button>
+                    <button class="level-btn" onclick="openMathLevel(event, 'math-p5')">Primary 5</button>
+                    <button class="level-btn" onclick="openMathLevel(event, 'math-p6')">Primary 6</button>
+                </div>
+
+                <div id="math-p1" class="level-details active">
+                    <h5>Primary 1 (P1)</h5>
+                    <h6>How Worlderly Teaches</h6>
+                    <ul>
+                        <li>Learning through stories, games, and real-life situations</li>
+                        <li>Strong focus on number sense using visual and hands-on tools</li>
+                        <li>Gentle guidance to build comfort and curiosity</li>
+                    </ul>
+                    <h6>Learning Outcomes</h6>
+                    <ul>
+                        <li>Confidence with numbers and counting</li>
+                        <li>Basic addition and subtraction understanding</li>
+                        <li>Positive emotional connection with math</li>
+                    </ul>
+                </div>
+
+                <div id="math-p2" class="level-details">
+                    <h5>Primary 2 (P2)</h5>
+                    <h6>How Worlderly Teaches</h6>
+                    <ul>
+                        <li>Concepts introduced through relatable everyday examples</li>
+                        <li>Visual models before written methods</li>
+                        <li>Step-by-step guidance without pressure</li>
+                    </ul>
+                    <h6>Learning Outcomes</h6>
+                    <ul>
+                        <li>Improved mental math skills</li>
+                        <li>Clear understanding of place value and operations</li>
+                        <li>Confidence in simple word problems</li>
+                    </ul>
+                </div>
+
+                <div id="math-p3" class="level-details">
+                    <h5>Primary 3 (P3)</h5>
+                    <h6>How Worlderly Teaches</h6>
+                    <ul>
+                        <li>Story-based problems to explain why math works</li>
+                        <li>Teachers guide thinking instead of giving answers</li>
+                        <li>Practice is gradual and supportive</li>
+                    </ul>
+                    <h6>Learning Outcomes</h6>
+                    <ul>
+                        <li>Strong foundation in multiplication and division</li>
+                        <li>Calm approach to word problems</li>
+                        <li>Ability to explain thinking clearly</li>
+                    </ul>
+                </div>
+
+                <div id="math-p4" class="level-details">
+                    <h5>Primary 4 (P4)</h5>
+                    <h6>How Worlderly Teaches</h6>
+                    <ul>
+                        <li>Problem-based lessons that encourage logical thinking</li>
+                        <li>Visual models before formal methods</li>
+                        <li>Mistakes treated as part of learning</li>
+                    </ul>
+                    <h6>Learning Outcomes</h6>
+                    <ul>
+                        <li>Confidence with fractions, decimals, time</li>
+                        <li>Ability to solve multi-step problems</li>
+                        <li>Growing independence in problem-solving</li>
+                    </ul>
+                </div>
+
+                <div id="math-p5" class="level-details">
+                    <h5>Primary 5 (P5)</h5>
+                    <h6>How Worlderly Teaches</h6>
+                    <ul>
+                        <li>Deeper learning across multiple sessions</li>
+                        <li>Comparing different solution methods</li>
+                        <li>Real-life math applications</li>
+                    </ul>
+                    <h6>Learning Outcomes</h6>
+                    <ul>
+                        <li>Clear understanding of fractions, ratios, percentages</li>
+                        <li>Strong word-problem solving skills</li>
+                        <li>Increased resilience and perseverance</li>
+                    </ul>
+                </div>
+
+                <div id="math-p6" class="level-details">
+                    <h5>Primary 6 (P6)</h5>
+                    <h6>How Worlderly Teaches</h6>
+                    <ul>
+                        <li>PSLE-style and real-world problem scenarios</li>
+                        <li>Focus on thinking processes, not shortcuts</li>
+                        <li>Calm, supportive, exam-ready environment</li>
+                    </ul>
+                    <h6>Learning Outcomes</h6>
+                    <ul>
+                        <li>Confidence in higher-order problems</li>
+                        <li>Ability to adapt strategies</li>
+                        <li>Reduced exam anxiety</li>
+                    </ul>
+                </div>
+
+                <div style="text-align: center;"><a href="#" class="tab-cta">Book a Free Math Trial</a></div>
+                
+                <!-- CLOSE BUTTON -->
+                <div class="close-btn-container">
+                    <button class="btn-close" onclick="closeTabs()">Close Math Details <i class="fas fa-times"></i></button>
+                </div>
+            </div>
+
+            <!-- SCIENCE TAB -->
+            <div id="science" class="tab-content">
+                <h3>Science (P3 – P6)</h3>
+                
+                <div class="level-tabs">
+                    <button class="level-btn active" onclick="openSciLevel(event, 'sci-p3')">Primary 3</button>
+                    <button class="level-btn" onclick="openSciLevel(event, 'sci-p4')">Primary 4</button>
+                    <button class="level-btn" onclick="openSciLevel(event, 'sci-p5')">Primary 5</button>
+                    <button class="level-btn" onclick="openSciLevel(event, 'sci-p6')">Primary 6</button>
+                </div>
+                
+                <div id="sci-p3" class="level-details active">
+                    <h5>Primary 3 – Falling in Love with Science</h5>
+                    <h6>How Worlderly Teaches</h6>
+                    <ul><li>Story-based lessons where children explore science naturally</li><li>Teachers guide discovery, not lectures</li><li>Simple games and XP make learning joyful and stress-free</li></ul>
+                    <h6>Learning Outcomes</h6>
+                    <ul><li>Observe and classify living & non-living things</li><li>Understand life cycles and simple forces through stories</li><li>Build confidence to share ideas without fear</li></ul>
+                </div>
+                
+                <div id="sci-p4" class="level-details">
+                    <h5>Primary 4 – Thinking Like a Scientist</h5>
+                    <h6>How Worlderly Teaches</h6>
+                    <ul><li>Problem-based stories with prediction and discussion</li><li>Guided investigations and in-class data collection</li><li>Games, XP, and badges replace exam anxiety</li></ul>
+                    <h6>Learning Outcomes</h6>
+                    <ul><li>Understand systems, matter, light, and heat</li><li>Measure, record, and compare observations</li><li>Explain ideas using evidence, not memorisation</li></ul>
+                </div>
+                
+                <div id="sci-p5" class="level-details">
+                    <h5>Primary 5 – Connecting Concepts</h5>
+                    <h6>How Worlderly Teaches</h6>
+                    <ul><li>Multi-lesson story journeys</li><li>Fair tests, variables, and system-based games</li><li>Healthy motivation through XP and leaderboards</li></ul>
+                    <h6>Learning Outcomes</h6>
+                    <ul><li>Explain life processes and cycles with reasoning</li><li>Understand water cycle, circuits, and transport systems</li><li>Make responsible choices about water and energy</li></ul>
+                </div>
+                
+                <div id="sci-p6" class="level-details">
+                    <h5>Primary 6 – Exam-Ready Confidence</h5>
+                    <h6>How Worlderly Teaches</h6>
+                    <ul><li>Real-world and PSLE-style story scenarios</li><li>Data analysis, graphs, and unfamiliar problems</li><li>Calm, supportive, logic-focused learning environment</li></ul>
+                    <h6>Learning Outcomes</h6>
+                    <ul><li>Apply science concepts to new situations</li><li>Analyse forces, energy, ecosystems, and data confidently</li><li>Enter exams calm, prepared, and fearless</li></ul>
+                </div>
+                
+                <div style="text-align: center;"><a href="#" class="tab-cta">Book a Free Science Trial</a></div>
+                
+                <!-- CLOSE BUTTON -->
+                <div class="close-btn-container">
+                    <button class="btn-close" onclick="closeTabs()">Close Science Details <i class="fas fa-times"></i></button>
+                </div>
+            </div>
+
+            <!-- CHESS TAB -->
+            <div id="chess" class="tab-content">
+                <div class="chess-intro">
+                    <h3>♟️ Chess at Worlderly</h3>
+                    <p class="tagline">Structured, competitive chess training for every level</p>
+                    <p>At Worlderly, chess is taught using proven coaching methods followed by professional and tournament-level chess trainers.Focused on fundamentals and long-term competitive chess growth.</p>
+                    <br>
+                    <p><strong>Students are placed into levels based on skill and experience, not age, after an initial assessment.</strong></p>
+                </div>
+
+                <div class="chess-timeline">
+                    <!-- Step 1 -->
+                    <div class="timeline-step step-pawn">
+                        <div class="step-icon icon-pawn"><i class="fas fa-chess-pawn"></i></div>
+                        <div class="step-content">
+                            <h5>Explorers</h5>
+                            <span class="step-subtitle">From Scratch · Pure Beginners</span>
+                            <h6>Suitable for:</h6>
+                            <p>Children who are completely new to chess.</p>
+                            <h6>How Worlderly Teaches:</h6>
+                            <ul>
+                                <li>Step-by-step introduction to piece movements and rules</li>
+                                <li>Visual board understanding and basic checkmate ideas</li>
+                                <li>Guided practice games under close coach supervision</li>
+                            </ul>
+                            <h6>Learning Outcomes:</h6>
+                            <ul>
+                                <li>Clear understanding of how chess works</li>
+                                <li>Ability to play a complete game independently</li>
+                                <li>Strong foundation for structured chess learning</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="timeline-step step-knight">
+                        <div class="step-icon icon-knight"><i class="fas fa-chess-knight"></i></div>
+                        <div class="step-content">
+                            <h5>Builders</h5>
+                            <span class="step-subtitle">Knows piece movement & basic strategies</span>
+                            <h6>Suitable for:</h6>
+                            <p>Children who understand the basics and are ready to improve structure.</p>
+                            <h6>How Worlderly Teaches:</h6>
+                            <ul>
+                                <li>Teaching opening principles and proper piece development</li>
+                                <li>Introduction to core tactics (forks, pins, skewers)</li>
+                                <li>Coach-led analysis of practice games</li>
+                            </ul>
+                            <h6>Learning Outcomes:</h6>
+                            <ul>
+                                <li>Improved piece coordination and planning</li>
+                                <li>Better in-game decision-making</li>
+                                <li>Confidence to play online rated games</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="timeline-step step-rook">
+                        <div class="step-icon icon-rook"><i class="fas fa-chess-rook"></i></div>
+                        <div class="step-content">
+                            <h5>Strategists</h5>
+                            <span class="step-subtitle">Rating ~500–900</span>
+                            <h6>Suitable for:</h6>
+                            <p>Students with competitive exposure looking to improve consistency and performance.</p>
+                            <h6>How Worlderly Teaches:</h6>
+                            <ul>
+                                <li>Tactical calculation and pattern recognition training</li>
+                                <li>Middle-game planning and endgame fundamentals</li>
+                                <li>Structured game analysis using online and FIDE-style formats</li>
+                            </ul>
+                            <h6>Learning Outcomes:</h6>
+                            <ul>
+                                <li>Consistent rating improvement</li>
+                                <li>Stronger positional understanding</li>
+                                <li>Improved tournament confidence and performance</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="timeline-step step-king">
+                        <div class="step-icon icon-king"><i class="fas fa-chess-king"></i></div>
+                        <div class="step-content">
+                            <h5>Masters</h5>
+                            <span class="step-subtitle">Advanced players · Tournament winners</span>
+                            <h6>Suitable for:</h6>
+                            <p>Highly skilled players preparing for serious competitive chess.</p>
+                            <h6>How Worlderly Teaches:</h6>
+                            <ul>
+                                <li>Advanced opening preparation and repertoire building</li>
+                                <li>Deep strategic thinking and endgame mastery</li>
+                                <li>Intensive tournament preparation and psychological training</li>
+                            </ul>
+                            <h6>Learning Outcomes:</h6>
+                            <ul>
+                                <li>Improved results at state and national-level tournaments</li>
+                                <li>Strong competitive mindset and focus</li>
+                                <li>Long-term progression toward elite chess pathways</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chess-extras">
+                    <div class="extra-box">
+                        <h4>🌟 Our Chess Coaching Team</h4>
+                        <h6>How Worlderly Teaches:</h6>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Training by FIDE-titled and rated coaches</li>
+                            <li><i class="fas fa-check-circle"></i> National and state-level professional trainers</li>
+                            <li><i class="fas fa-check-circle"></i> Personalised coaching with long-term development focus</li>
+                        </ul>
+                        <h6>Learning Outcomes:</h6>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Measurable rating improvement (online & FIDE)</li>
+                            <li><i class="fas fa-check-circle"></i> Clear competitive growth roadmap</li>
+                            <li><i class="fas fa-check-circle"></i> Consistent performance improvement over time</li>
+                        </ul>
+                    </div>
+                    <div class="extra-box">
+                        <h4>♟️ Why Parents Choose Worlderly</h4>
+                        <h6>How Worlderly Teaches:</h6>
+                        <ul>
+                            <li><i class="fas fa-star"></i> Level-based progression (no mixed batches)</li>
+                            <li><i class="fas fa-star"></i> 1:1 and small-group personalised coaching</li>
+                            <li><i class="fas fa-star"></i> Serious, competition-focused training</li>
+                        </ul>
+                        <h6>Learning Outcomes:</h6>
+                        <ul>
+                            <li><i class="fas fa-star"></i> Faster skill progression</li>
+                            <li><i class="fas fa-star"></i> Strong fundamentals and competitive confidence</li>
+                            <li><i class="fas fa-star"></i> Clear path from beginner to advanced chess</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;"><a href="#" class="tab-cta">Book a Free Chess Assessment Class</a></div>
+                
+                <!-- CLOSE BUTTON -->
+                <div class="close-btn-container">
+                    <button class="btn-close" onclick="closeTabs()">Close Chess Details <i class="fas fa-times"></i></button>
+                </div>
+            </div>
+
+            <!-- AI TAB -->
+            <div id="ai" class="tab-content">
+                <h3>AI & STEM</h3>
+                <p class="tagline">Project-Based · Accredited · Future-Ready</p>
+                
+                <div class="level-details active" style="border:none; padding:0; background:transparent;">
+                    <h5>What students will experience</h5>
+                    <ul>
+                        <li>Personalised learning paths</li>
+                        <li>Expert mentorship</li>
+                        <li>Hands-on AI & STEM projects</li>
+                        <li>Portfolio & certification (STEM.org accredited)</li>
+                    </ul>
+                </div>
+                
+                <p class="coming-soon">Launching soon for Ages 6–9 and 10+</p>
+                <a href="#" class="tab-cta secondary">Join the AI Waitlist</a>
+                
+                <!-- CLOSE BUTTON -->
+                <div class="close-btn-container">
+                    <button class="btn-close" onclick="closeTabs()">Close AI Details <i class="fas fa-times"></i></button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- NEW: JOURNEY SECTION (Bhanzu-Inspired 4-Column Layout) -->
+    <section class="journey-section">
+        <div class="journey-container">
+            <div class="journey-header">
+                <h2 class="journey-title">Join Worlderly in 4 Easy Steps!</h2>
+                <p class="journey-subtitle">Start your learning adventure today</p>
+            </div>
+            <div class="steps-grid">
+                <!-- Step 1 -->
+                <div class="step-card step1">
+                    <div class="step-icon"><i class="fas fa-calendar-day"></i></div>
+                    <div class="step-content">
+                        <div class="step-number">01</div><h4 class="step-title">Book Free Trial</h4><p class="step-desc">Easily schedule your initial no-commitment session to experience Worlderly's amazing service.</p>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="step-card step2">
+                    <div class="step-icon"><i class="fas fa-handshake-simple"></i></div>
+                    <div class="step-content">
+                        <div class="step-number">02</div><h4 class="step-title">Meet Your Mentor</h4><p class="step-desc">Get acquainted with your personally matched expert educator in a fun intro session.</p>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="step-card step3">
+                    <div class="step-icon"><i class="fas fa-map"></i></div>
+                    <div class="step-content">
+                        <div class="step-number">03</div><h4 class="step-title">Get Learning Plan</h4><p class="step-desc">Receive a customized educational roadmap designed specifically for your learning goals.</p>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="step-card step4">
+                    <div class="step-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="step-content">
+                        <div class="step-number">04</div><h4 class="step-title">Start Your Journey</h4><p class="step-desc">Begin your tailored tutoring sessions and start making real progress!</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom CTA -->
+            <div class="journey-cta">
+                <div class="j-cta-content">
+                    <div class="j-cta-text">
+                        <h3 class="j-cta-title">Join Worlderly Today & Make Learning Fun!</h3>
+                        <a href="#" class="j-cta-btn">Book Free Trial</a>
+                    </div>
+                    <div class="j-cta-icon"><i class="fas fa-graduation-cap"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION (Added here as per previous request) -->
+    <div class="pricing-section">
+        <div class="pricing-header">
+            <h2>Choose the Perfect Learning Path</h2>
+            <p>3 flexible plans to suit your child’s learning style & schedule</p>
+        </div>
+
+        <div class="selector-container">
+            <div class="selector-box" id="btn-academic" onclick="togglePlans('academic')">
+                <div class="selector-icon" style="color: #3498db; background: #eaf6ff;">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Academic Price Plan</h3>
+                <p>Math & Science Curriculum (P1 - P6)</p>
+                <a href="javascript:void(0)" class="selector-btn" id="text-academic">View Plans</a>
+            </div>
+
+            <div class="selector-box" id="btn-skill" onclick="togglePlans('skill')">
+                <div class="selector-icon" style="color: #9b59b6; background: #f5eef8;">
+                    <i class="fas fa-chess-knight"></i>
+                </div>
+                <h3>Skill Price Plan</h3>
+                <p>Chess, Coding, STEM & AI</p>
+                <a href="javascript:void(0)" class="selector-btn" id="text-skill">View Plans</a>
+            </div>
+        </div>
+
+        <!-- ACADEMIC PLANS -->
+        <div id="academic-content" class="pricing-wrapper">
+            <div class="pricing-card plan-group">
+                <div class="badge">Best Value</div>
+                <div class="card-header"><h3 class="plan-title">Group</h3><div class="plan-subtitle">Social & Interactive (Max 4)</div></div>
+                <div class="price-section"><span class="current-price">S$320</span><span class="original-price">S$480</span><span class="billing-cycle">per month</span></div>
+                <div class="features-list"><ul><li><strong>8 Classes per month</strong> <span class="feature-note">2 lessons per week</span></li><li><strong>60-Minute Sessions</strong> <span class="feature-note">Fun & interactive</span></li><li><strong>Fixed Schedule</strong> <span class="feature-note">Consistent routine</span></li></ul></div>
+                <div class="card-footer"><a href="#" class="cta-button" style="background-color: #f39c12;">Book Free Trial</a></div>
+            </div>
+            <div class="pricing-card plan-buddy">
+                <div class="badge">Most Popular</div>
+                <div class="card-header"><h3 class="plan-title">Buddy</h3><div class="plan-subtitle">Semi-Private (2 Students)</div></div>
+                <div class="price-section"><span class="current-price">S$400</span><span class="original-price">S$550</span><span class="billing-cycle">per month</span></div>
+                <div class="features-list"><ul><li><strong>8 Classes per month</strong> <span class="feature-note">2 lessons per week</span></li><li><strong>60-Minute Focused Sessions</strong> <span class="feature-note">Higher engagement</span></li><li><strong>Mutual Rescheduling</strong> <span class="feature-note">Flexible if buddies agree</span></li></ul></div>
+                <div class="card-footer"><a href="#" class="cta-button" style="background-color: #2980b9;">Book Free Trial</a></div>
+            </div>
+            <div class="pricing-card plan-private">
+                <div class="card-header"><h3 class="plan-title">1:1 Private</h3><div class="plan-subtitle">Premium Tutoring</div></div>
+                <div class="price-section"><span class="current-price">S$480</span><span class="original-price">S$600</span><span class="billing-cycle">per month</span></div>
+                <div class="features-list"><ul><li><strong>8 Classes per month</strong> <span class="feature-note">2 lessons per week</span></li><li><strong>60-Min Intensive Coaching</strong> <span class="feature-note">100% Personal attention</span></li><li><strong>Fully Flexible</strong> <span class="feature-note">Reschedule anytime</span></li></ul></div>
+                <div class="card-footer"><a href="#" class="cta-button" style="background-color: #c0392b;">Book Free Trial</a></div>
+            </div>
+        </div>
+
+        <!-- SKILL PLANS (UPDATED 3-Column) -->
+        <div id="skill-content" class="pricing-wrapper">
+            <!-- Skill Group -->
+            <div class="pricing-card plan-group">
+                <div class="badge">Best Value</div>
+                <div class="card-header"><h3 class="plan-title">Group</h3><div class="plan-subtitle">Social & Interactive (Max 4)</div></div>
+                <div class="price-section"><span class="current-price">S$160</span><span class="billing-cycle">per month</span></div>
+                <div class="features-list"><ul><li><strong>8 Classes per month</strong> <span class="feature-note">2 lessons per week</span></li><li><strong>60-Minute Sessions</strong> <span class="feature-note">Fun & interactive</span></li><li><strong>Fixed Schedule</strong> <span class="feature-note">Consistent routine</span></li></ul></div>
+                <div class="card-footer"><a href="#" class="cta-button" style="background-color: #f39c12;">Book Free Trial</a></div>
+            </div>
+            <!-- Skill Buddy -->
+            <div class="pricing-card plan-buddy">
+                <div class="badge">Most Popular</div>
+                <div class="card-header"><h3 class="plan-title">Buddy</h3><div class="plan-subtitle">Semi-Private (2 Students)</div></div>
+                <div class="price-section"><span class="current-price">S$200</span><span class="billing-cycle">per month</span></div>
+                <div class="features-list"><ul><li><strong>8 Classes per month</strong> <span class="feature-note">2 lessons per week</span></li><li><strong>60-Minute Focused Sessions</strong> <span class="feature-note">Higher engagement</span></li><li><strong>Mutual Rescheduling</strong> <span class="feature-note">Flexible if buddies agree</span></li></ul></div>
+                <div class="card-footer"><a href="#" class="cta-button" style="background-color: #2980b9;">Book Free Trial</a></div>
+            </div>
+            <!-- Skill Private -->
+            <div class="pricing-card plan-private">
+                <div class="card-header"><h3 class="plan-title">1:1 Private</h3><div class="plan-subtitle">Premium Tutoring</div></div>
+                <div class="price-section"><span class="current-price">S$240</span><span class="billing-cycle">per month</span></div>
+                <div class="features-list"><ul><li><strong>8 Classes per month</strong> <span class="feature-note">2 lessons per week</span></li><li><strong>60-Min Intensive Coaching</strong> <span class="feature-note">100% Personal attention</span></li><li><strong>Fully Flexible</strong> <span class="feature-note">Reschedule anytime</span></li></ul></div>
+                <div class="card-footer"><a href="#" class="cta-button" style="background-color: #c0392b;">Book Free Trial</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GUARANTEE SECTION -->
+    <section class="guarantee-section">
+        <div class="guarantee-card">
+            
+            <!-- Header -->
+            <div class="g-header">
+                <h2>Your Peace of Mind is <span class="g-highlight">Our Priority</span></h2>
+                <p>You are in safe hands at Worlderly, designed to nurture confidence and long-term growth in children.</p>
+            </div>
+
+            <!-- Content Area -->
+            <div class="g-content">
+                
+                <!-- Left: CSS Badge -->
+                <div class="g-badge-container">
+                    <div class="g-ribbon-left"></div>
+                    <div class="g-ribbon-right"></div>
+                    <div class="g-badge">
+                        <div class="g-badge-text-100">100%</div>
+                        <div class="g-badge-text-mb">MONEY BACK</div>
+                        <div class="g-badge-text-g">GUARANTEE</div>
+                    </div>
+                </div>
+
+                <!-- Right: Text Content -->
+                <div class="g-text-col">
+                    <h3>Our Heartfelt Commitment</h3>
+                    <p>We are deeply passionate about customer satisfaction. Therefore, we have a <strong>100% money-back guarantee policy</strong>. If we do not meet your expectations, you have the right to cancel your purchase and get your money back. It's as simple as that.</p>
+
+                    <h3>The Worlderly Happiness Guarantee</h3>
+                    <p>If at any point you wish to discontinue, simply email us at <a href="mailto:support@worlderly.com">support@worlderly.com</a>.</p>
+
+                    <ul class="g-list">
+                        <li>We will immediately process your refund.</li>
+                        <li>Refund covers all remaining lessons/classes.</li>
+                        <li>No questions asked.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="g-footer">
+                <button class="g-btn">Book a Free Trial Lesson</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CAREER SECTION (Teach at Worlderly) -->
+    <section class="career-section">
+        <div class="career-container">
+            <div class="career-content">
+                <div class="career-header">
+                    <h2 class="single-line-heading">
+    Teach with <span class="highlight-text">Passion</span>. 
+    Work with <span class="highlight-text">Freedom</span>.
+</h2>
+
+                    <p>Join the top-rated platform for Game-Based Learning in Math, Science, Chess & STEM.</p>
+                </div>
+
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
+                        <div class="benefit-content"><h4>Work from Anywhere</h4><p>100% remote with a flexible schedule that fits your life.</p></div>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M12 2.5s-4 2.5-4 9c0 4.5 3 6.5 4 10.5 1-4 4-6 4-10.5 0-6.5-4-9-4-9z" opacity=".3"/><path d="M14.79 10.62c.76-1.55.97-3.15.54-4.57l-1.88 3.82c-.32.65-.96 1.09-1.68 1.13h-.06c-.71-.05-1.34-.51-1.63-1.18L8.68 6.05c-.43 1.42-.22 3.02.54 4.57.81 1.66 2.33 2.92 4.47 3.61.32-.96.65-2.22 1.1-3.61zM12 2.5s-4 2.5-4 9c0 2.65 1.05 4.61 2.45 6.13L7.1 21s2.26-1.07 3.52-2.34c.43.23.88.42 1.38.56.5-.14.95-.33 1.38-.56 1.26 1.27 3.52 2.34 3.52 2.34l-3.35-3.37C14.95 16.11 16 14.15 16 11.5c0-6.5-4-9-4-9zm-2.58 7.37l2.25-4.56.33.68c.26.54.43 1.13.5 1.74l-.28.56c-.22.46-.68.74-1.18.73h-.04c-.5-.03-.94-.33-1.14-.78l-.44-.89z"/></svg></div>
+                        <div class="benefit-content"><h4>No More Boring Drills</h4><p>Use our award-winning, story-driven curriculum and tools.</p></div>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+                        <div class="benefit-content"><h4>Focus on Teaching</h4><p>We handle marketing and admin—you just inspire the kids.</p></div>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg></div>
+                        <div class="benefit-content"><h4>Grow Your Career</h4><p>Competitive pay, professional development and community.</p></div>
+                    </div>
+                </div>
+
+                <div class="target-profile">
+                    <h3>Who We Are Looking For:</h3>
+                    <p>Passionate experts who can make complex topics simple and fun. If you love <strong>Math, Science, Chess, or STEM</strong>, we want to hear from you.</p>
+                </div>
+
+                <div class="career-cta-section">
+                    <a href="#" class="apply-button">Apply to Become a Mentor</a>
+                    <span class="subtext">Application takes less than 2 minutes</span>
+                </div>
+            </div>
+
+            <!-- Right Image -->
+            <div class="career-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Female Educator">
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION (INTEGRATED HERE) -->
+    <section class="faq-section">
+        <div class="faq-container">
+
+            <div class="section-header">
+                <h2>❓ Frequently Asked Questions</h2>
+                <p>Everything you need to know about the Worlderly experience</p>
+            </div>
+
+            <!-- FAQ ITEMS START -->
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>1. What is Worlderly?</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        <p>Worlderly is an online World School for children, offering live 1:1 and small-group classes in Math, Science, Chess, and STEM.</p>
+                        <p>We focus on joyful, personalised learning, guided with care by talented women teachers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>2. Which age group or grades do you teach?</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        <p>We currently teach Primary 1 to Primary 6 (P1–P6) students, aligned to the Singapore curriculum and global learning standards.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>3. Are the classes live or recorded?</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        <p>All classes are <strong>LIVE and interactive</strong>.</p>
+                        <p>We do not rely on pre-recorded videos, because children learn best through real-time interaction with a teacher.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>4. What is the difference between 1:1 and group classes?</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        <ul>
+                            <li><strong>1:1 classes</strong> are fully personalised and move at your child’s pace.</li>
+                            <li><strong>Group classes</strong> (maximum 4 students) encourage collaboration while still ensuring individual attention.</li>
+                        </ul>
+                        <p>Both formats follow the same high-quality curriculum and care standards.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>5. Who are the teachers at Worlderly?</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        <p>Our classes are led by experienced and carefully selected women teachers, including:</p>
+                        <ul>
+                            <li>Subject experts in Math and Science</li>
+                            <li>Curriculum designers</li>
+                            <li>Experienced chess coaches (including a National Chess Master)</li>
+                        </ul>
+                        <p>All teachers are trained to teach with patience, clarity, and care.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>6. How do you assess my child’s level before starting?</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        <p>Before classes begin, we conduct a simple assessment to understand your child’s current level.</p>
+                        <p>This helps us place them in the right learning group and personalise the teaching approach.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>7. How is chess taught at Worlderly?</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        <p>Chess students are grouped based on their playing level — from beginners to advanced players.</p>
+                        <p>The Chess Master assesses each child and assigns them to the right level so learning is engaging and effective.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>8. Will parents receive updates about their child’s progress?</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        <p>Yes. After every class, parents receive a brief summary of what was covered.</p>
+                        <p>We also conduct periodic parent meetings to discuss progress, strengths, and next steps.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>9. Is my child’s data and privacy safe at Worlderly?</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        <p>Absolutely. Worlderly follows Singapore’s PDPA guidelines and maintains strict data-protection practices.</p>
+                        <p>Your child’s information is used only for learning purposes and is never shared without consent.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>10. Are classes recorded?</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        <p>Classes may be recorded only for quality and safety purposes, and only with parental consent.</p>
+                        <p>Recordings are not shared publicly.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>11. How many classes per week are recommended?</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        <p>Most parents choose 2 classes per week, which provides steady progress without overwhelming the child.</p>
+                        <p>The final schedule can be adjusted based on your child’s needs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>12. Do you offer a free trial class?</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        <p>Yes 😊 We offer a free trial class so you and your child can experience our teaching approach before enrolling.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>13. What happens if my child misses a class?</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        <p>We understand that schedules can change.</p>
+                        <p>Please inform us in advance, and we’ll guide you on rescheduling or alternative arrangements based on your plan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>14. How is Worlderly different from other online tuition platforms?</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        <p>Worlderly is not a marketplace of random tutors. We are a school-like learning environment with:</p>
+                        <ul>
+                            <li>Structured curriculum</li>
+                            <li>Consistent teachers</li>
+                            <li>Personalised learning paths</li>
+                            <li>Strong parent partnership</li>
+                            <li>Joyful, pressure-free teaching</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>15. How do I get started?</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        <p>Simply click <strong>“Book a Free Trial Class”</strong> or <strong>“Chat on WhatsApp”</strong>, and our team will guide you through the next steps.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ ITEMS END -->
+
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <div class="container">
+        <div class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to get started?</h2>
+                <p>Book a free diagnostic assessment today and receive a personalized learning plan.</p>
+                <button class="btn-cta">Book Free Trial</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+    <span class="footer-logo">Worlderly<span>.</span></span>
+
+    <p class="footer-desc">
+        🔒 Privacy-First Learning<br>
+        👨‍👩‍👧‍👦 Parent-First Consent<br>
+        🛡️ Secure & Child-Safe Platform <br>
+        Alligned with Singapre's Personal Data Protection Act (PDPA)
+    </p>
+</div>
+
+            <div class="footer-col">
+                <h4>Programs</h4><ul><li><a href="#">Math class</a></li><li><a href="#">Science class</a></li><li><a href="#">Chess Academy</a></li><li><a href="#">STEM & AI</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4><ul><li><a href="#">Student Login</a></li><li><a href="#">Parent Portal</a></li><li><a href="#">Contact Us</a></li><li><a href="#">FAQs</a></li></ul>
+            </div>
+            <div class="footer-col">
+                
+            </div>
+             <div class="footer-col">
+                <h4><a href="privacy.html">Privacy Policy</a></h4>
+            </div>
+            <div class="footer-col">
+                <h4>Terms of Use</h4>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Main Card/Tab Switcher
+        function openTab(evt, tabName) {
+            var targetContent = document.getElementById(tabName);
+            var isAlreadyActive = targetContent.classList.contains('active');
+
+            // 1. Close everything first
+            var contents = document.querySelectorAll('.tab-content');
+            contents.forEach(el => el.classList.remove('active'));
+            var cards = document.querySelectorAll('.subject-card');
+            cards.forEach(el => el.classList.remove('active'));
+
+            // 2. If it wasn't already active, open it
+            if (!isAlreadyActive) {
+                targetContent.classList.add('active');
+                // Find the card that was clicked (or parent of clicked element)
+                var clickedCard = evt.currentTarget;
+                if(clickedCard.classList.contains('subject-card')) {
+                    clickedCard.classList.add('active');
+                    
+                    // Scroll to content
+                    setTimeout(() => {
+                        targetContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        }
+
+        function closeTabs() {
+            var contents = document.querySelectorAll('.tab-content');
+            contents.forEach(el => el.classList.remove('active'));
+            var cards = document.querySelectorAll('.subject-card');
+            cards.forEach(el => el.classList.remove('active'));
+            
+            // Optional: Scroll back to grid
+            document.querySelector('.subject-grid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Sub-Tab Switchers (Math)
+        function openMathLevel(evt, levelId) {
+            var levels = document.querySelectorAll("#math .level-details");
+            levels.forEach(el => el.classList.remove("active"));
+            var btns = document.querySelectorAll("#math .level-btn");
+            btns.forEach(el => el.classList.remove("active"));
+            document.getElementById(levelId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Sub-Tab Switchers (Science)
+        function openSciLevel(evt, levelId) {
+            var levels = document.querySelectorAll("#science .level-details");
+            levels.forEach(el => el.classList.remove("active"));
+            var btns = document.querySelectorAll("#science .level-btn");
+            btns.forEach(el => el.classList.remove("active"));
+            document.getElementById(levelId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Pricing Toggle Logic
+        function togglePlans(selectedCategory) {
+            // Get Elements
+            const content = document.getElementById(selectedCategory + '-content');
+            const box = document.getElementById('btn-' + selectedCategory);
+            const btnText = document.getElementById('text-' + selectedCategory);
+
+            // Check if it is currently open
+            const isCurrentlyOpen = content.classList.contains('show');
+
+            // 1. RESET EVERYTHING (Close all)
+            // Hide all content areas
+            document.querySelectorAll('.pricing-wrapper').forEach(el => el.classList.remove('show'));
+            // Remove active style from all boxes
+            document.querySelectorAll('.selector-box').forEach(el => el.classList.remove('active'));
+            // Reset all buttons to "View Plans"
+            document.querySelectorAll('.selector-btn').forEach(el => el.innerText = 'View Plans');
+
+            // 2. TOGGLE LOGIC
+            // If it was NOT open, open it now. 
+            // If it WAS open, we did nothing after the reset step, so it effectively closes.
+            if (!isCurrentlyOpen) {
+                content.classList.add('show');
+                box.classList.add('active');
+                btnText.innerText = 'Close Plans'; // Change button text
+            }
+        }
+
+        // FAQ Toggle Logic
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const isActive = button.classList.contains('active');
+
+                // Close all other open FAQs
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.style.maxHeight = null;
+                });
+
+                // If clicked one wasn't active, open it
+                if (!isActive) {
+                    button.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
+        });
+    </script>
+    <!-- ================= PRESENTATION MODE WIDGET (UPDATED) ================= -->
+<div id="presentation-controls">
+    <button id="toggle-pres-btn" onclick="togglePresentationMode()">
+        <i class="fas fa-play"></i> Start Presentation
+    </button>
+    <div class="nav-arrows" style="display: none;">
+        <button onclick="prevSlide()"><i class="fas fa-chevron-up"></i></button>
+        <div class="slide-count">Slide <span id="current-slide">1</span></div>
+        <button onclick="nextSlide()"><i class="fas fa-chevron-down"></i></button>
+    </div>
+</div>
+
+<style>
+    /* --- CONTROLS UI --- */
+    #presentation-controls {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 99999; /* Ensure it's above everything */
+        font-family: var(--font-ui);
+    }
+
+    #toggle-pres-btn {
+        background: var(--space-blue);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    #toggle-pres-btn:hover {
+        background: var(--action-orange);
+        transform: scale(1.05);
+    }
+
+    .nav-arrows {
+        background: white;
+        padding: 10px;
+        border-radius: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .nav-arrows button {
+        background: #f1f5f9;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        color: var(--space-blue);
+        transition: 0.2s;
+    }
+
+    .nav-arrows button:hover {
+        background: var(--space-blue);
+        color: white;
+    }
+
+    .slide-count {
+        font-size: 12px;
+        font-weight: 700;
+        color: #888;
+        margin: 5px 0;
+    }
+
+    /* --- PRESENTATION MODE ACTIVE STYLES --- */
+    
+    /* 1. Lock the main body scroll */
+    body.presentation-active {
+        overflow: hidden; 
+        height: 100vh;
+    }
+
+    /* 2. Header Fix: Keep it sticky but allow content to slide under */
+    body.presentation-active header {
+        position: absolute; /* Changed from fixed to absolute for better flow */
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(255,255,255,0.98);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    /* 3. The Slide Logic */
+    body.presentation-active section, 
+    body.presentation-active footer,
+    body.presentation-active .pricing-section,
+    body.presentation-active .cta-section {
+        height: 100vh; /* Force full screen height */
+        width: 100%;
+        box-sizing: border-box;
+        
+        /* Layout logic */
+        display: flex;
+        flex-direction: column;
+        
+        /* Padding to prevent Header overlap */
+        padding-top: 100px; 
+        padding-bottom: 40px;
+        
+        /* KEY FIX: Align top by default so content isn't cut off at the top */
+        justify-content: flex-start;
+        align-items: center;
+        
+        /* KEY FIX: Allow scrolling INSIDE the slide if content is too big */
+        overflow-y: auto; 
+        scroll-behavior: smooth;
+
+        /* Hide Scrollbar for that "PPT" look, but allow scrolling */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE */
+    }
+
+    /* Hide Webkit Scrollbar */
+    body.presentation-active section::-webkit-scrollbar,
+    body.presentation-active footer::-webkit-scrollbar,
+    body.presentation-active .pricing-section::-webkit-scrollbar { 
+        display: none; 
+    }
+
+    /* 4. Center the Hero specifically (it looks better centered) */
+    body.presentation-active .hero {
+        justify-content: center;
+        padding-top: 60px; /* Reset padding for hero */
+    }
+
+    /* 5. Pricing Section Specific Tweaks */
+    body.presentation-active .pricing-section {
+        justify-content: flex-start; /* Ensure title stays at top */
+        padding-top: 110px;
+    }
+    
+    /* Ensure containers take full width */
+    body.presentation-active .container {
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    /* Mobile / Small Laptop fix for Pricing Cards */
+    @media (max-height: 800px) {
+        body.presentation-active .pricing-card {
+            padding: 20px; /* Reduce padding to fit more */
+        }
+        body.presentation-active .price-section {
+            padding: 10px;
+        }
+        body.presentation-active .features-list ul li {
+            margin-bottom: 8px; /* Compact list */
+        }
+    }
+</style>
+
+<script>
+    let isPresentationMode = false;
+    let currentSlide = 0;
+
+    // Define sections strictly in order
+    const slides = [
+        '.hero',
+        '.partners-section',
+        '.features',
+        '.classes-section',
+        '.journey-section',
+        '.pricing-section',
+        '.guarantee-section',
+        '.career-section',
+        '.faq-section',
+        '.cta-section',
+        'footer'
+    ];
+
+    function togglePresentationMode() {
+        const body = document.body;
+        const btn = document.getElementById('toggle-pres-btn');
+        const nav = document.querySelector('.nav-arrows');
+
+        isPresentationMode = !isPresentationMode;
+
+        if (isPresentationMode) {
+            body.classList.add('presentation-active');
+            btn.style.display = 'none'; // Hide start button
+            nav.style.display = 'flex'; // Show arrows
+            
+            // Go to first slide
+            goToSlide(0);
+            
+            // Add keyboard listener
+            document.addEventListener('keydown', handleKeyNav);
+        } else {
+            body.classList.remove('presentation-active');
+            btn.style.display = 'flex';
+            nav.style.display = 'none';
+            document.removeEventListener('keydown', handleKeyNav);
+            
+            // Reset scroll position
+            window.scrollTo(0,0);
+        }
+    }
+
+    function handleKeyNav(e) {
+        if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+            e.preventDefault(); // Stop default scroll
+            nextSlide();
+        } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+            e.preventDefault(); // Stop default scroll
+            prevSlide();
+        }
+    }
+
+    function nextSlide() {
+        if (currentSlide < slides.length - 1) {
+            currentSlide++;
+            goToSlide(currentSlide);
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            goToSlide(currentSlide);
+        }
+    }
+
+    function goToSlide(index) {
+        const targetSelector = slides[index];
+        const targetElement = document.querySelector(targetSelector);
+        
+        if (targetElement) {
+            // Update counter
+            document.getElementById('current-slide').innerText = index + 1;
+            
+            // Because we set body overflow to hidden, we need to scroll the window to the element's offset
+            // However, since we are using height: 100vh for sections, we just need to scroll the window.
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+</script>
+</body>
+</html>
